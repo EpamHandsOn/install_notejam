@@ -1,0 +1,28 @@
+---
+# tasks file for install_notejam
+
+- name: Update and upgrade apt packages
+  apt:
+          upgrade: true
+          update_cache: true
+  become: true
+
+
+- name: Install python-pip
+  apt:
+          name: 'python-pip'
+          state: 'present'
+  become: true
+
+- name: Clone application sources from GIT
+  git:
+          repo: https://github.com/komarserjio/notejam.git
+          dest: /home/ubuntu/HandsOn
+          force: on
+
+- name: Install dependencies
+  pip:
+          executable: pip
+          chdir: /home/ubuntu/HandsOn/django
+          requirements: requirements.txt
+
