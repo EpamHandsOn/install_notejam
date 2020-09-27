@@ -14,15 +14,16 @@
           state: 'present'
   become: true
 
+
 - name: Clone application sources from GIT
   git:
-          repo: https://github.com/komarserjio/notejam.git
+          repo: https://github.com/EpamHandsOn/notejam.git
           dest: /home/ubuntu/HandsOn
           force: on
+
 
 - name: Install dependencies
   pip:
           executable: pip
           chdir: /home/ubuntu/HandsOn/django
           requirements: requirements.txt
-
